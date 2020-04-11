@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ajax</title>
+</head>
+<body>
+    <div id="show">
+        <table>
+            <thead>
+                <tr>
+                    <td>id</td>
+                    <td>name</td>
+                    <td>address</td>
+                    <td>no</td>
+                    <td>go</td>
+                </tr>
+            </thead>
+            <tbody id="data">
+
+            </tbody>
+        </table>
+    </div>
+    <!-- <script src="jquery-3.4.1.min.js"></script> -->
+    <script>
+//         $(function(){
+//                     $.getJSON('ajax.php', function(data){
+//                         var data = $.parseJSON(e);
+//                         var content = "";
+//                         if(data.length){
+//                         for(var complaint in data) {
+//                              fetch
+// $('<p>'+data[complaint].complaint_id+'</p>').appendTo("#show");
+//                         };
+//                         }
+//                     });
+//                 });
+var ajax = new XMLHttpRequest();
+var method = "GET";
+var url = "php/complain.php";
+var asynchronous = true;
+ajax.open(method, url, asynchronous);
+ajax.send();
+ajax.onreadystatechange = function(){
+    if(this.readyState == 4 && this.status == 200){
+       var data = JSON.parse(this.responseText);
+       console.log(data);
+       var html = "";
+       for(var a = 0; a < data.length; a++){
+           var complaint_id = data[a].complain_id;
+           var complain_name = data[a].complaint_name;
+           var complain_desc = data[a].complain_desc;
+           var complain_num = data[a].complain_number;
+           var complain_coun = data[a].complain_country;
+           html += "<tr>";
+                html += "<td>" + complaint_id + "</td>";
+                html += "<td>" + complain_name + "</td>";
+            html += "</tr>";
+            document.getElementById("data").innerHTML = html;
+       }
+    }
+}
+    </script>
+    <h3 align="center">Manage Student Details</h3>
+    <table border="1" align="center">
+       <tr>
+           <td> <input type="button" id="display" value="Display All Data" /> </td>
+       </tr>
+    </table>
+    <div id="responsecontainer" align="center">
+</body>
+</html>
