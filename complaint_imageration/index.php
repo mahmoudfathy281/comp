@@ -24,6 +24,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 ?>
 <div class="style_log_in">
+<h1>وزارة الهجرة</h1>
     <img src="layout/img/imageration.png">
 <form class="login" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
         <h3 class="text-center"> تسجيل الدخول </h3>
